@@ -14,15 +14,15 @@ board = [
     [0, 0, 0, 0, 0, 3, 7, 2, 0],
     [0, 0, 0, 4, 9, 8, 6, 1, 0],
 ]
+
+
 term = Terminal()
 
 
 def boardprinter(board, row, col, iter):
     location = (row * 9) + col
     line = chain(*board)
-    count = 0
-    count2 = 0
-    countl = 0
+    count, count2, countl = 0, 0, 0
     with term.location(0, term.height - 14):
         print(term.normal + "Iterations: " + term.red + str(iter))
         for y, x in enumerate(line):
@@ -74,31 +74,35 @@ def check(i, r, c, board):
 
 
 def solver(board):
-    solved = False
-    row = 0
-    col = 0
-    x = 1
-    backtrack = False
+    # Define some needed vars
+    solved, backtrack = False, False
+    row, col, x, iter = 0, 0, 1, 0
     history = []
-    iter = 0
+
+    # Main Loop
     while not solved:
-        if board[row][col] == 0 or backtrack:
+        if board[row][col] == 0 or backtrack: # Find next number we need to solve
             iter += 1
+
+            # Loop through numbers 1-9, or from backtrack x
             for i in range(x, 10):
                 valid = check(i, row, col, board)
                 if valid == True:
                     board[row][col] = i
-                    history.append([row, col, i])
+                    history.append([row, col, i]) # Add last location to stack
                     x = 1
                     backtrack = False
                     break
+            
+            # If nothing was found, backtrack one step on stack
             if valid == False:
                 backtrack = True
-                row = history[-1][0]
-                col = history[-1][1]
-                x = history[-1][2] + 1
+                row, col, x = history[-1][0], history[-1][1], history[-1][2] + 1
                 board[row][col] = 0
                 history.pop()
+
+
+        #if we are not backtracking, increment to next position        
         if not backtrack:
             if row == 8 & col == 8:
                 solved = True
@@ -107,7 +111,7 @@ def solver(board):
                 row += 1
             else:
                 col += 1
-        boardprinter(board, row, col, iter)
+        boardprinter(board, row, col, iter) # Beautiful (slow) visualization!
     return board
 
 
