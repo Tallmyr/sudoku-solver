@@ -81,7 +81,7 @@ def solver(board):
 
     # Main Loop
     while not solved:
-        if board[row][col] == 0 or backtrack: # Find next number we need to solve
+        if board[row][col] == 0 or backtrack:  # Find next number we need to solve
             iter += 1
 
             # Loop through numbers 1-9, or from backtrack x
@@ -89,11 +89,11 @@ def solver(board):
                 valid = check(i, row, col, board)
                 if valid == True:
                     board[row][col] = i
-                    history.append([row, col, i]) # Add last location to stack
+                    history.append([row, col, i])  # Add last location to stack
                     x = 1
                     backtrack = False
                     break
-            
+
             # If nothing was found, backtrack one step on stack
             if valid == False:
                 backtrack = True
@@ -101,8 +101,7 @@ def solver(board):
                 board[row][col] = 0
                 history.pop()
 
-
-        #if we are not backtracking, increment to next position        
+        # if we are not backtracking, increment to next position
         if not backtrack:
             if row == 8 & col == 8:
                 solved = True
@@ -111,7 +110,7 @@ def solver(board):
                 row += 1
             else:
                 col += 1
-        boardprinter(board, row, col, iter) # Beautiful (slow) visualization!
+        boardprinter(board, row, col, iter)  # Beautiful (slow) visualization!
     return board
 
 
