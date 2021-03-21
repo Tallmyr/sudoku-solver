@@ -40,4 +40,4 @@ def solver(board, vis):
                 col += 1
         if vis:
             boardprinter(board, row, col, iter)  # Beautiful (slow) visualization!
-    return board
+    return board, iter
