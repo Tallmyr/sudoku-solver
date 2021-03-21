@@ -2,6 +2,15 @@ from sudoku.check import check
 from sudoku.boardprinter import boardprinter
 
 def solver(board: list, vis: bool):
+    """ Solves a sudoku board using backtracking
+        Parameters:
+            board (list): Sudoku board to be solved (Nested list, 9 lists of 9 numbers [[1, 2, 3, ... , 9,],[1, 2, 3, ... , 9,] ...])
+            vis (bool): Enable visual mode, where each iteration is printed using Blessings
+
+        Returns:
+            board (list): Returns a solved board
+            iter (int): Number of iterations required
+    """
     # Define some needed vars
     solved, backtrack = False, False
     row, col, x, iter = 0, 0, 1, 0
@@ -38,6 +47,7 @@ def solver(board: list, vis: bool):
                 row += 1
             else:
                 col += 1
+        # Are we runing in visual mode?
         if vis:
-            boardprinter(board, row, col, iter)  # Beautiful (slow) visualization!
+            boardprinter(board, row, col, iter)
     return board, iter
