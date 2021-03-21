@@ -1,4 +1,5 @@
-from sudoku import check, boardprinter
+from sudoku.check import check
+from sudoku.boardprinter import boardprinter
 
 def solver(board, vis):
     # Define some needed vars
