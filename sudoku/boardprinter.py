@@ -4,32 +4,56 @@ from blessings import Terminal
 
 term = Terminal()
 
-def boardprinter(board, row, col, iter):
+
+def boardprinter(board, row=10, col=9, iter=0):
+
+    # Find current location, and build string
     location = (row * 9) + col
     line = chain(*board)
-    count, count2, countl = 0, 0, 0
-    with term.location(0, term.height - 14):
-        print(term.normal + "Iterations: " + term.red + str(iter))
-        for y, x in enumerate(line):
-            if count2 == 9:
-                print()
-                count2 = 0
-                count = 0
-                countl += 1
-            if countl == 3:
-                print(term.normal + "------ ------- ------")
-                countl = 0
-            if count == 3:
-                print(term.normal + "|", end=" ")
-                count = 0
-            if y < location:
-                print(term.green + str(x), end=" ")
-            elif y == location:
-                print(term.blue + str(x), end=" ")
-            else:
-                if x == 0:
-                    print(term.red + " ", end=" ")
-                else:
-                    print(term.normal + str(x), end=" ")
-            count += 1
-            count2 += 1
+
+    # Is this running visual, or is this final print?
+    if row < 10:
+        with term.location(0, term.height - 14):
+            printing(line, location, iter)
+    else:
+        printing(line, location, iter)
+
+
+def printing(line, location, iter):
+
+    # Set initial countters
+    c_count, b_count, l_count = 0, 0, 0
+
+    # Print status
+    print(term.normal + "Iterations: " + term.red + str(iter))
+
+    # Main Loop
+    for y, x in enumerate(line):
+
+        # If we are at end of line, new line and reset counters
+        if b_count == 9:
+            print()
+            b_count = c_count = 0
+            l_count += 1
+
+        # Add horisontal seperator on row *3, reset counter
+        if l_count == 3:
+            print(term.normal + "------ ------- ------")
+            l_count = 0
+
+        # Add Vertical seperator on col *3, reset counter
+        if c_count == 3:
+            print(term.normal + "|", end=" ")
+            c_count = 0
+
+        # Decide on colors of numbers
+        if y < location:
+            print(term.green + str(x), end=" ")
+        elif y == location:
+            print(term.blue + str(x), end=" ")
+        else:
+            print(term.normal + str(x), end=" ")
+
+        # Increment counters
+        c_count += 1
+        b_count += 1
