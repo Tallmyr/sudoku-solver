@@ -6,6 +6,14 @@ term = Terminal()
 
 
 def boardprinter(board, row=10, col=9, iter=0):
+    """Print out pretty looking board
+
+    Parameters:
+        board (list): List containing Sudoku Board
+        row (int): Row number for current iteration (Optional)
+        col (int): Col number for current iteration (Optional)
+        iter (int): Iteration running through to print progress (Optional)
+    """
 
     # Find current location, and build string
     location = (row * 9) + col
@@ -20,6 +28,13 @@ def boardprinter(board, row=10, col=9, iter=0):
 
 
 def printing(line, location, iter):
+    """Build the Blessings Print String
+
+    Parameters:
+        line (chain): Chain from sudoku list
+        location (int): Location for current Iter
+        iter (int): Current iter for status
+    """
 
     # Set initial countters
     c_count, b_count, l_count = 0, 0, 0
