@@ -1,7 +1,7 @@
 from sudoku.check import check
 from sudoku.boardprinter import boardprinter
 
-def solver(board, vis):
+def solver(board: list, vis: bool):
     # Define some needed vars
     solved, backtrack = False, False
     row, col, x, iter = 0, 0, 1, 0

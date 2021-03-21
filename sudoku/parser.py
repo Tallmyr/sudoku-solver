@@ -1,6 +1,6 @@
 import re
 
-def parser(file):
+def parser(file: str):
     """ Parser to take .txt file and turn into Sudoku list.
     Parameters:
         file (str): Path to .txt file

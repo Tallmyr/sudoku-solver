@@ -5,7 +5,7 @@ from blessings import Terminal
 term = Terminal()
 
 
-def boardprinter(board, row=10, col=9, iter=0):
+def boardprinter(board: list, row=10, col=9, iter=0):
     """Print out pretty looking board
 
     Parameters:
