@@ -6,7 +6,7 @@ from sudoku.solver import solver
 
 if __name__ == "__main__":
 
-    args = argparse.ArgumentParser(description="Commandline Sudoku Solver")
+    args = argparse.ArgumentParser(description="Sudoku Solver using Backtracking")
     args.add_argument("file", help="Textfile containing sudoku data")
     args.add_argument("-v", "-visual",  help="Visual solver", action="store_true", default=False)
     args = args.parse_args()
