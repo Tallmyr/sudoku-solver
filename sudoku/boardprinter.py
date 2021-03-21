@@ -21,7 +21,7 @@ def boardprinter(board: list, row=10, col=9, iter=0):
 
     # Is this running visual, or is this final print?
     if row < 10:
-        with term.location(0, term.height - 14):
+        with term.location():
             printing(line, location, iter)
     else:
         printing(line, location, iter)
