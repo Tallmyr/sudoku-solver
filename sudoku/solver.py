@@ -1,5 +1,6 @@
-from sudoku.check import check
 from sudoku.boardprinter import boardprinter
+from sudoku.check import check
+
 
 def solver(board: list, vis: bool):
     """ Solves a sudoku board using backtracking

@@ -1,8 +1,8 @@
+import argparse
+
+from sudoku.boardprinter import boardprinter
 from sudoku.parser import parser
 from sudoku.solver import solver
-from sudoku.boardprinter import boardprinter
-
-import argparse
 
 if __name__ == "__main__":
 
