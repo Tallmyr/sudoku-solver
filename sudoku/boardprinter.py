@@ -67,7 +67,10 @@ def printing(line, location, iter):
         elif y == location:
             print(term.blue + str(x), end=" ")
         else:
-            print(term.normal + str(x), end=" ")
+            if x == 0:
+                print(" ", end=" ")
+            else:
+                print(term.normal + str(x), end=" ")
 
         # Increment counters
         c_count += 1
