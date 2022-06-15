@@ -1,4 +1,5 @@
 def check(i, r, c, board):
+    # sourcery skip: invert-any-all, use-any, use-itertools-product
     # Check Row
     for col in range(9):
         if board[r][col] == i:

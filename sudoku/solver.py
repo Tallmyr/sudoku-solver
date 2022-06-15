@@ -3,14 +3,14 @@ from sudoku.check import check
 
 
 def solver(board: list, vis: bool):
-    """ Solves a sudoku board using backtracking
-        Parameters:
-            board (list): Sudoku board to be solved (Nested list, 9 lists of 9 numbers [[1, 2, 3, ... , 9,],[1, 2, 3, ... , 9,] ...])
-            vis (bool): Enable visual mode, where each iteration is printed using Blessings
+    """Solves a sudoku board using backtracking
+    Parameters:
+        board (list): Sudoku board to be solved
+        vis (bool): Enable visual mode, where each iteration is printed
 
-        Returns:
-            board (list): Returns a solved board
-            iter (int): Number of iterations required
+    Returns:
+        board (list): Returns a solved board
+        iter (int): Number of iterations required
     """
     # Define some needed vars
     solved, backtrack = False, False
@@ -19,13 +19,13 @@ def solver(board: list, vis: bool):
 
     # Main Loop
     while not solved:
-        if board[row][col] == 0 or backtrack:  # Find next number we need to solve
+        if board[row][col] == 0 or backtrack:  # Find next number to solve
             iter += 1
 
             # Loop through numbers 1-9, or from backtrack x
             for i in range(x, 10):
                 valid = check(i, row, col, board)
-                if valid == True:
+                if valid is True:
                     board[row][col] = i
                     history.append([row, col, i])  # Add last location to stack
                     x = 1
@@ -33,7 +33,7 @@ def solver(board: list, vis: bool):
                     break
 
             # If nothing was found, backtrack one step on stack
-            if valid == False:
+            if valid is False:
                 backtrack = True
                 row, col, x = history[-1][0], history[-1][1], history[-1][2] + 1
                 board[row][col] = 0
